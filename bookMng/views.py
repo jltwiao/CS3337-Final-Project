@@ -1,23 +1,19 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from .models import MainMenu
-from .forms import BookForm
-
-from django.http import HttpResponseRedirect
-from .models import Book
-from django.views.generic.edit import CreateView
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
 from django.http import Http404, HttpRequest, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
+from django.views.generic.edit import CreateView
 
+from .forms import BookForm
+from .models import Book
+from .models import MainMenu
 from .models import MessageThread, PrivateMessage
-
 
 
 class Register(CreateView):
@@ -113,8 +109,8 @@ def book_delete(request, book_id):
                       'item_list': MainMenu.objects.all(),
                   })
 
-User = get_user_model()
 
+User = get_user_model()
 
 
 @login_required
@@ -189,7 +185,6 @@ def thread_detail(request: HttpRequest, thread_id: int) -> HttpResponse:
     return render(request, "bookMng/thread.html", context)
 
 
-
 @login_required
 @require_http_methods(["GET", "POST"])
 def compose_message(request: HttpRequest) -> HttpResponse:
@@ -253,6 +248,7 @@ def compose_message(request: HttpRequest) -> HttpResponse:
         "selected_user": selected_user,
     }
     return render(request, "bookMng/compose.html", context)
+
 
 @login_required
 @require_POST

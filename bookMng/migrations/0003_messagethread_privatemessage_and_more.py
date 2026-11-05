@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('bookMng', '0002_book'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),

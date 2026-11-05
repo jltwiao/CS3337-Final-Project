@@ -1,6 +1,5 @@
-from django.contrib.auth.models import User
-from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
@@ -103,6 +102,8 @@ class PrivateMessage(models.Model):
             self.is_read = True
             self.read_at = timezone.now()
             self.save(update_fields=["is_read", "read_at"])
+
+
 # Create your models here.
 
 
@@ -122,4 +123,3 @@ class Book(models.Model):
     picture = models.FileField(upload_to='bookEx/static/uploads')
     pic_path = models.CharField(max_length=300, editable=False, blank=True)
     username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
-

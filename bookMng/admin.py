@@ -1,18 +1,15 @@
-from django.contrib import admin
-
 # Register your models here.
 
-from .models import MainMenu
-from .models import Book
 from django.contrib import admin
 
+from .models import Book
+from .models import MainMenu
 from .models import MessageThread, PrivateMessage
-
 
 admin.site.register(MainMenu)
 
-
 admin.site.register(Book)
+
 
 @admin.register(MessageThread)
 class MessageThreadAdmin(admin.ModelAdmin):
