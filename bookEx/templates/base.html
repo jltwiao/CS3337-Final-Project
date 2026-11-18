@@ -36,10 +36,11 @@
     <nav class="sidebar">
         <ul>
             {% block sidenav %}
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
+                {% for item in item_list %}
+                <li>
+                    <a href="{{ item.link }}"> {{ item.item }} </a>
+                </li>
+                {% endfor %}
             {% endblock sidenav %}
         </ul>
     </nav>
